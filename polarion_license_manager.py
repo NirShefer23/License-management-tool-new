@@ -1022,7 +1022,7 @@ class PolarionLicenseManager:
                     df = pd.read_excel(file_path)
                     file_type = "Excel"
             
-            print(f"Successfully detected and read {file_type} file: {file_path}")
+            print(f"Successfully detected and read {file_type} file: {file_path} sharon")
             print(f"Found {len(df)} rows in the file")
             
             # Convert DataFrame to license configuration text
