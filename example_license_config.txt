@@ -1,0 +1,161 @@
+# ------------------------------- POLARION ALM --------------------------------
+# NAMED USERS:
+namedALMUser1=admin
+namedALMUser2=alm
+# namedALMUser3=john.doe        (this line is commented out and ignored)
+namedALMUser4=alice.smith
+# namedALMUser5=                (placeholder, ignored)
+
+# CONCURRENT USERS:
+# concurrentALMUser1=admin     (placeholder, commented out)
+concurrentALMUser2=bob.jones
+concurrentALMUser3=carol.white
+
+# -------------------------------- POLARION QA --------------------------------
+# NAMED USERS:
+# namedQAUser1=admin           (no active named QA users in this example)
+# namedQAUser2=                (placeholders)
+# namedQAUser3=
+
+# CONCURRENT USERS:
+concurrentQAUser1=s_Koblenz_CI
+concurrentQAUser2=david.brown
+concurrentQAUser3=emma.davis
+
+# ----------------------------- POLARION REQUIREMENTS -----------------------------
+# NAMED USERS:
+namedRequirementsUser1=benjamins
+namedRequirementsUser2=barakd
+namedRequirementsUser3=charlie.wilson
+namedRequirementsUser4=diana.miller
+namedRequirementsUser5=edward.garcia
+namedRequirementsUser6=fiona.rodriguez
+namedRequirementsUser7=george.martinez
+namedRequirementsUser8=helen.anderson
+namedRequirementsUser9=ian.thompson
+namedRequirementsUser10=janet.moore
+namedRequirementsUser11=kevin.jackson
+namedRequirementsUser12=lisa.martin
+namedRequirementsUser13=michael.lee
+namedRequirementsUser14=nancy.gonzalez
+namedRequirementsUser15=oliver.harris
+namedRequirementsUser16=patricia.clark
+namedRequirementsUser17=quentin.lewis
+namedRequirementsUser18=arielk
+namedRequirementsUser19=evgenyra
+# namedRequirementsUser20=     (placeholder, commented)
+
+# CONCURRENT USERS:
+concurrentRequirementsUser1=drorp
+concurrentRequirementsUser2=zivk
+concurrentRequirementsUser3=robert.taylor
+concurrentRequirementsUser4=sarah.young
+concurrentRequirementsUser5=thomas.allen
+concurrentRequirementsUser6=ursula.king
+concurrentRequirementsUser7=vincent.wright
+concurrentRequirementsUser8=wendy.lopez
+concurrentRequirementsUser9=xavier.hill
+concurrentRequirementsUser10=eyal
+concurrentRequirementsUser11=yvonne.scott
+concurrentRequirementsUser12=zachary.green
+concurrentRequirementsUser13=amanda.adams
+concurrentRequirementsUser14=benjamin.baker
+concurrentRequirementsUser15=claire.nelson
+concurrentRequirementsUser16=daniel.carter
+concurrentRequirementsUser17=elizabeth.mitchell
+concurrentRequirementsUser18=frank.perez
+concurrentRequirementsUser19=grace.roberts
+concurrentRequirementsUser20=henry.turner
+concurrentRequirementsUser21=isabella.phillips
+concurrentRequirementsUser22=jack.campbell
+concurrentRequirementsUser23=kate.parker
+concurrentRequirementsUser24=leo.evans
+concurrentRequirementsUser25=maya.edwards
+concurrentRequirementsUser26=nathan.collins
+concurrentRequirementsUser27=olivia.stewart
+concurrentRequirementsUser28=paul.sanchez
+concurrentRequirementsUser29=quinn.morris
+concurrentRequirementsUser30=rachel.rogers
+concurrentRequirementsUser31=samuel.reed
+concurrentRequirementsUser32=tina.cook
+concurrentRequirementsUser33=ofirs
+concurrentRequirementsUser5000=zohara    (ignore index >= 5000)
+concurrentRequirementsUser5001=yvilench  (ignore)
+
+# -------------------------------- POLARION PRO --------------------------------
+# NAMED USERS:
+# namedProUser1=admin          (no active named Pro users in example)
+# namedProUser2=
+# namedProUser3=
+
+# CONCURRENT USERS:
+concurrentProUser1=dins
+concurrentProUser2=orna
+concurrentProUser3=ulrich.ward
+concurrentProUser4=valerie.torres
+concurrentProUser5=walter.peterson
+concurrentProUser6=xenia.bailey
+concurrentProUser7=rivkak
+# concurrentProUser8=maord     (commented out)
+concurrentProUser9=yochevedv
+concurrentProUser10=adam.cooper
+concurrentProUser11=betty.richardson
+concurrentProUser12=charles.cox
+concurrentProUser13=diana.ward
+concurrentProUser14=eric.torres
+concurrentProUser15=frances.peterson
+concurrentProUser16=gary.bailey
+concurrentProUser17=heather.cooper
+concurrentProUser18=ivan.richardson
+concurrentProUser19=janet.cox
+concurrentProUser20=keith.ward
+concurrentProUser21=linda.torres
+concurrentProUser22=marcus.peterson
+concurrentProUser23=nina.bailey
+concurrentProUser24=oscar.cooper
+concurrentProUser25=paula.richardson
+concurrentProUser26=quentin.cox
+concurrentProUser27=rosemary.ward
+concurrentProUser28=mustafaa
+concurrentProUser29=teresa.torres
+concurrentProUser30=ulrich.peterson
+
+# ----------------------------- POLARION REVIEWER -----------------------------
+# NAMED USERS:
+# namedReviewerUser1=admin     (no active named Reviewer users)
+# namedReviewerUser2=
+# namedReviewerUser3=
+
+# CONCURRENT USERS:
+concurrentReviewerUser1=netanelli
+concurrentReviewerUser2=hilay
+concurrentReviewerUser3=victor.bailey
+concurrentReviewerUser4=wendy.cooper
+concurrentReviewerUser5=xavier.richardson
+concurrentReviewerUser6=yolanda.cox
+concurrentReviewerUser7=zachary.ward
+concurrentReviewerUser8=alice.torres
+concurrentReviewerUser9=benjamin.peterson
+concurrentReviewerUser10=libi
+concurrentReviewerUser11=charlotte.bailey
+concurrentReviewerUser12=daniel.cooper
+concurrentReviewerUser13=emma.richardson
+concurrentReviewerUser14=franklin.cox
+concurrentReviewerUser15=grace.ward
+concurrentReviewerUser16=henry.torres
+concurrentReviewerUser17=isabella.peterson
+concurrentReviewerUser18=jackson.bailey
+concurrentReviewerUser19=katherine.cooper
+concurrentReviewerUser20=leonardo.richardson
+concurrentReviewerUser21=madison.cox
+concurrentReviewerUser22=nathaniel.ward
+concurrentReviewerUser23=olivia.torres
+concurrentReviewerUser24=patrick.peterson
+concurrentReviewerUser25=quinn.bailey
+concurrentReviewerUser26=rachel.cooper
+concurrentReviewerUser27=samuel.richardson
+concurrentReviewerUser28=davidb
+concurrentReviewerUser29=teresa.cox
+concurrentReviewerUser30=ulrich.ward
+concurrentReviewerUser5000=zurielt   (ignore >= 5000)
+concurrentReviewerUser5001=zurib     (ignore) 
