@@ -11,7 +11,7 @@ A comprehensive automation tool for managing Polarion user licenses with databas
 - **Connection Testing**: Comprehensive connection testing and error reporting
 
 ### 📊 License Management
-- **Configuration Parsing - sharon**: Parse license configuration from text files, CSV, or Excel
+- **Configuration Parsing**: Parse license configuration from text files, CSV, or Excel
 - **Named/Concurrent Slots**: Support for both named and concurrent license types
 - **Placeholder Filtering**: Automatically ignore placeholder entries (index ≥ 5000)
 - **Comment Handling**: Properly handle commented and active license lines
