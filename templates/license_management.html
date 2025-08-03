@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+
+{% block title %}License Management - Mobileye Development Tools{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="text-center space-y-4 fade-in">
+        <div class="flex items-center justify-center gap-3">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <i class="fas fa-wrench text-white text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">License Management Automation</h1>
+                <p class="text-gray-600">Streamline Polarion license operations with automated workflows</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Input Panel -->
+        <div class="space-y-6 fade-in" style="animation-delay: 0.1s;">
+            <!-- Action Selection -->
+            <div class="card-glass rounded-2xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-play text-blue-500"></i>
+                    Select Action
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button id="action-query" class="action-btn active p-4 rounded-xl border-2 transition-all duration-200 text-left" data-action="query">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-search w-5 h-5 text-blue-600"></i>
+                            <div>
+                                <p class="font-medium text-blue-900">Query Licenses</p>
+                                <p class="text-xs text-gray-500">View current license configuration</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button id="action-add" class="action-btn p-4 rounded-xl border-2 transition-all duration-200 text-left" data-action="add">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-plus w-5 h-5 text-gray-500"></i>
+                            <div>
+                                <p class="font-medium text-gray-900">Add Users</p>
+                                <p class="text-xs text-gray-500">Add new users to licenses</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button id="action-remove" class="action-btn p-4 rounded-xl border-2 transition-all duration-200 text-left" data-action="remove">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-minus w-5 h-5 text-gray-500"></i>
+                            <div>
+                                <p class="font-medium text-gray-900">Remove Users</p>
+                                <p class="text-xs text-gray-500">Remove users from licenses</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button id="action-bulk" class="action-btn p-4 rounded-xl border-2 transition-all duration-200 text-left" data-action="bulk">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-users w-5 h-5 text-gray-500"></i>
+                            <div>
+                                <p class="font-medium text-gray-900">Bulk Operations</p>
+                                <p class="text-xs text-gray-500">Perform bulk user operations</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Configuration Input -->
+            <div class="card-glass rounded-2xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-file-text text-blue-500"></i>
+                    License Configuration
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="license-config" class="block text-sm font-medium text-gray-700 mb-2">
+                            Paste License Configuration
+                        </label>
+                        <textarea
+                            id="license-config"
+                            placeholder="Paste your license configuration data here..."
+                            class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label for="user-file" class="block text-sm font-medium text-gray-700 mb-2">
+                            User Data File (Optional)
+                        </label>
+                        <input
+                            id="user-file"
+                            type="file"
+                            accept=".csv,.xlsx,.txt"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors"
+                        />
+                        <div id="file-status" class="mt-2 hidden">
+                            <p class="text-sm text-green-600 flex items-center gap-1">
+                                <i class="fas fa-check-circle"></i>
+                                <span id="file-name"></span> uploaded
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="user-identifiers-section" class="hidden">
+                        <label for="user-identifiers" class="block text-sm font-medium text-gray-700 mb-2">
+                            User Identifiers
+                        </label>
+                        <input
+                            id="user-identifiers"
+                            type="text"
+                            placeholder="Enter user emails separated by commas"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Execute Button -->
+            <button
+                id="execute-btn"
+                class="btn-primary w-full h-12 rounded-xl text-white font-medium shadow-lg text-base"
+                disabled
+            >
+                <i class="fas fa-play mr-2"></i>
+                Execute Query Licenses
+            </button>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="space-y-6 fade-in" style="animation-delay: 0.2s;">
+            <div class="card-glass rounded-2xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fas fa-file-text text-blue-500"></i>
+                    Execution Output
+                    <span id="execution-status" class="hidden"></span>
+                </h3>
+                <div id="output-container">
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="fas fa-file-text text-4xl mb-4 opacity-50"></i>
+                        <p>Output will appear here after execution</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-semibold text-blue-900 mb-1">Quick Start Guide</h4>
+                        <p class="text-sm text-blue-700">
+                            <strong>Step 1:</strong> Select an action (Query, Add, Remove, or Bulk)<br>
+                            <strong>Step 2:</strong> Paste your license configuration data<br>
+                            <strong>Step 3:</strong> Upload user data file if needed (CSV/Excel format)<br>
+                            <strong>Step 4:</strong> For user operations, enter email addresses<br>
+                            <strong>Step 5:</strong> Click Execute to run the automation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+let selectedAction = 'query';
+let userFile = null;
+
+// Action selection
+document.querySelectorAll('.action-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('.action-btn').forEach(b => {
+            b.classList.remove('active', 'border-blue-500', 'bg-blue-50');
+            b.classList.add('border-gray-200');
+            b.querySelector('i').classList.remove('text-blue-600');
+            b.querySelector('i').classList.add('text-gray-500');
+            b.querySelector('p').classList.remove('text-blue-900');
+            b.querySelector('p').classList.add('text-gray-900');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active', 'border-blue-500', 'bg-blue-50');
+        this.classList.remove('border-gray-200');
+        this.querySelector('i').classList.add('text-blue-600');
+        this.querySelector('i').classList.remove('text-gray-500');
+        this.querySelector('p').classList.add('text-blue-900');
+        this.querySelector('p').classList.remove('text-gray-900');
+        
+        selectedAction = this.dataset.action;
+        updateExecuteButton();
+        toggleUserIdentifiers();
+    });
+});
+
+// File upload handling
+document.getElementById('user-file').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        userFile = file;
+        document.getElementById('file-name').textContent = file.name;
+        document.getElementById('file-status').classList.remove('hidden');
+    } else {
+        userFile = null;
+        document.getElementById('file-status').classList.add('hidden');
+    }
+    updateExecuteButton();
+});
+
+// License config input handling
+document.getElementById('license-config').addEventListener('input', function() {
+    updateExecuteButton();
+});
+
+// User identifiers input handling
+document.getElementById('user-identifiers').addEventListener('input', function() {
+    updateExecuteButton();
+});
+
+function updateExecuteButton() {
+    const licenseConfig = document.getElementById('license-config').value.trim();
+    const userIdentifiers = document.getElementById('user-identifiers').value.trim();
+    
+    let isValid = licenseConfig.length > 0;
+    
+    // For add/remove actions, require user identifiers
+    if (selectedAction === 'add' || selectedAction === 'remove') {
+        isValid = isValid && userIdentifiers.length > 0;
+    }
+    
+    const executeBtn = document.getElementById('execute-btn');
+    executeBtn.disabled = !isValid;
+    
+    // Update button text
+    const actionText = {
+        'query': 'Query Licenses',
+        'add': 'Add Users',
+        'remove': 'Remove Users',
+        'bulk': 'Bulk Operations'
+    };
+    
+    executeBtn.innerHTML = `<i class="fas fa-play mr-2"></i>Execute ${actionText[selectedAction]}`;
+}
+
+function toggleUserIdentifiers() {
+    const section = document.getElementById('user-identifiers-section');
+    if (selectedAction === 'add' || selectedAction === 'remove') {
+        section.classList.remove('hidden');
+    } else {
+        section.classList.add('hidden');
+    }
+}
+
+// Execute button click handler
+document.getElementById('execute-btn').addEventListener('click', async function() {
+    const executeBtn = this;
+    const originalText = executeBtn.innerHTML;
+    
+    // Show loading state
+    utils.showLoading(executeBtn);
+    
+    try {
+        // Prepare form data
+        const formData = new FormData();
+        formData.append('license_config', document.getElementById('license-config').value);
+        formData.append('action', selectedAction);
+        formData.append('user_identifiers', document.getElementById('user-identifiers').value);
+        
+        if (userFile) {
+            formData.append('user_file', userFile);
+        }
+        
+        // Show execution status
+        const statusElement = document.getElementById('execution-status');
+        statusElement.innerHTML = '<span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Running...</span>';
+        statusElement.classList.remove('hidden');
+        
+        // Make API call
+        const response = await fetch('/api/execute-license-management', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        // Update status
+        if (result.success) {
+            statusElement.innerHTML = '<span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Success</span>';
+            utils.showNotification('License management operation completed successfully', 'success');
+        } else {
+            statusElement.innerHTML = '<span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">Failed</span>';
+            utils.showNotification('License management operation failed', 'error');
+        }
+        
+        // Display output
+        const outputContainer = document.getElementById('output-container');
+        if (result.output) {
+            outputContainer.innerHTML = `
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-auto max-h-96">
+                    <pre class="whitespace-pre-wrap">${result.output}</pre>
+                </div>
+            `;
+        } else if (result.error) {
+            outputContainer.innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-exclamation-triangle text-red-500"></i>
+                        <span class="font-semibold text-red-800">Error</span>
+                    </div>
+                    <pre class="text-red-700 text-sm whitespace-pre-wrap">${result.error}</pre>
+                </div>
+            `;
+        }
+        
+    } catch (error) {
+        console.error('Error executing license management:', error);
+        utils.showNotification('Failed to execute license management tool', 'error');
+        
+        const statusElement = document.getElementById('execution-status');
+        statusElement.innerHTML = '<span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">Error</span>';
+        statusElement.classList.remove('hidden');
+    } finally {
+        // Hide loading state
+        utils.hideLoading(executeBtn, originalText);
+    }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    updateExecuteButton();
+    toggleUserIdentifiers();
+});
+</script>
+{% endblock %} 

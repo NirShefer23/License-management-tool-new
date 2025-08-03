@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mobileye Development Tools{% endblock %}</title>
+    
+    <!-- Mobileye Brand Colors -->
+    <style>
+        :root {
+            --mobileye-primary: #1e40af;
+            --mobileye-secondary: #3b82f6;
+            --mobileye-accent: #06b6d4;
+            --mobileye-gray: #64748b;
+            --mobileye-light-gray: #f8fafc;
+            --mobileye-dark: #0f172a;
+        }
+    </style>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mobileye: {
+                            primary: '#1e40af',
+                            secondary: '#3b82f6',
+                            accent: '#06b6d4',
+                            gray: '#64748b',
+                            'light-gray': '#f8fafc',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+        
+        .card-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--mobileye-primary) 0%, var(--mobileye-secondary) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+        
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-item:hover {
+            background: linear-gradient(135deg, var(--mobileye-primary) 0%, var(--mobileye-secondary) 100%);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-item.active {
+            background: linear-gradient(135deg, var(--mobileye-primary) 0%, var(--mobileye-secondary) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid var(--mobileye-primary);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation Sidebar -->
+    <div class="flex">
+        <div class="w-64 min-h-screen bg-white shadow-lg">
+            <!-- Logo and Header -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-lg">M</span>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-xl text-gray-900">Mobileye</h2>
+                        <p class="text-sm text-gray-500 font-medium">Development Tools</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="p-4">
+                <div class="mb-4">
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-2">
+                        Navigation
+                    </h3>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li>
+                        <a href="/" class="sidebar-item {% if request.endpoint == 'dashboard' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
+                            <i class="fas fa-home w-5 h-5"></i>
+                            <span class="font-medium">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/license-management" class="sidebar-item {% if request.endpoint == 'license_management' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
+                            <i class="fas fa-wrench w-5 h-5"></i>
+                            <span class="font-medium">License Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/reqif-comparison" class="sidebar-item {% if request.endpoint == 'reqif_comparison' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
+                            <i class="fas fa-chart-line w-5 h-5"></i>
+                            <span class="font-medium">ReqIF Comparison</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/help" class="sidebar-item {% if request.endpoint == 'help_page' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
+                            <i class="fas fa-question-circle w-5 h-5"></i>
+                            <span class="font-medium">Help & Support</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Mobile Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200 px-6 py-4 lg:hidden">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-menu-toggle" class="text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-xl font-bold text-gray-900">Mobileye Tools</h1>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="p-6">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden lg:hidden">
+        <div class="w-64 h-full bg-white shadow-lg">
+            <!-- Mobile menu content (same as sidebar) -->
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.getElementById('mobile-menu')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+        
+        // Utility functions
+        window.utils = {
+            showLoading: function(element) {
+                element.innerHTML = '<div class="loading-spinner mx-auto"></div>';
+                element.disabled = true;
+            },
+            
+            hideLoading: function(element, originalText) {
+                element.innerHTML = originalText;
+                element.disabled = false;
+            },
+            
+            showNotification: function(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 fade-in ${
+                    type === 'success' ? 'bg-green-500 text-white' :
+                    type === 'error' ? 'bg-red-500 text-white' :
+                    'bg-blue-500 text-white'
+                }`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+            },
+            
+            formatDuration: function(seconds) {
+                if (seconds < 60) {
+                    return `${seconds.toFixed(1)}s`;
+                } else {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+                    return `${minutes}m ${remainingSeconds.toFixed(0)}s`;
+                }
+            }
+        };
+    </script>
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html> 

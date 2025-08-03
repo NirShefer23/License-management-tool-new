@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}Help & Support - Mobileye Development Tools{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="text-center space-y-4 fade-in">
+        <div class="flex items-center justify-center gap-3">
+            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <i class="fas fa-question-circle text-white text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Help & Support</h1>
+                <p class="text-gray-600">Get help using Mobileye development tools</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Guide -->
+    <div class="fade-in" style="animation-delay: 0.1s;">
+        <div class="card-glass rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-book-open text-blue-500"></i>
+                Quick Start Guide
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- License Management Guide -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-wrench text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">License Management Automation</h4>
+                            <p class="text-sm text-gray-600">Automate Polarion license operations</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-semibold text-gray-800 mb-2">How to use:</h5>
+                        <ol class="space-y-1 text-sm text-gray-600">
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">1.</span>
+                                <span>Select an action (Query, Add, Remove, or Bulk)</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">2.</span>
+                                <span>Paste your license configuration data</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">3.</span>
+                                <span>Upload user data file if needed (CSV/Excel format)</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">4.</span>
+                                <span>For user operations, enter email addresses</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">5.</span>
+                                <span>Click Execute to run the automation</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h5 class="font-semibold text-gray-800 mb-2">Pro tips:</h5>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Use Query action to check current license status</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Bulk operations are ideal for large user lists</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Always backup license configuration before changes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ReqIF Comparison Guide -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">ReqIF Comparison Tool</h4>
+                            <p class="text-sm text-gray-600">Compare ReqIF files and identify differences</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-semibold text-gray-800 mb-2">How to use:</h5>
+                        <ol class="space-y-1 text-sm text-gray-600">
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">1.</span>
+                                <span>Upload the original ReqIF file (.reqifz format)</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">2.</span>
+                                <span>Upload the comparison ReqIF file (.reqifz format)</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">3.</span>
+                                <span>Click Compare Files to start analysis</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">4.</span>
+                                <span>Review the detailed comparison report</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="font-medium text-blue-600 min-w-[1.2rem]">5.</span>
+                                <span>Export results for documentation</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h5 class="font-semibold text-gray-800 mb-2">Pro tips:</h5>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Ensure both files are in .reqifz format</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Larger files may take longer to process</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-500 min-w-[0.5rem]">•</span>
+                                <span>Review high-severity differences first</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Contacts -->
+    <div class="fade-in" style="animation-delay: 0.2s;">
+        <div class="card-glass rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-comments text-blue-500"></i>
+                Contact Support
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-gray-50 rounded-xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comments text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Technical Support</h4>
+                    <p class="text-sm text-gray-600 mb-4">For technical issues and tool problems</p>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors w-full">
+                        <i class="fas fa-envelope mr-2"></i>
+                        tech-support@mobileye.com
+                    </button>
+                </div>
+
+                <div class="text-center p-6 bg-gray-50 rounded-xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">License Issues</h4>
+                    <p class="text-sm text-gray-600 mb-4">For Polarion license management help</p>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors w-full">
+                        <i class="fas fa-envelope mr-2"></i>
+                        license-admin@mobileye.com
+                    </button>
+                </div>
+
+                <div class="text-center p-6 bg-gray-50 rounded-xl">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-white"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">General Help</h4>
+                    <p class="text-sm text-gray-600 mb-4">For general questions and guidance</p>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors w-full">
+                        <i class="fas fa-envelope mr-2"></i>
+                        help-desk@mobileye.com
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="fade-in" style="animation-delay: 0.3s;">
+        <div class="card-glass rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-question-circle text-blue-500"></i>
+                Frequently Asked Questions
+            </h3>
+            <div class="space-y-6">
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">What file formats are supported?</h4>
+                    <p class="text-gray-600 text-sm">
+                        <strong>License Management:</strong> CSV, Excel files for user data.<br>
+                        <strong>ReqIF Comparison:</strong> .reqifz files only.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">How long do operations take?</h4>
+                    <p class="text-gray-600 text-sm">
+                        Most operations complete within 30 seconds. Large ReqIF files may take up to 2-3 minutes.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Are my files stored securely?</h4>
+                    <p class="text-gray-600 text-sm">
+                        All files are processed locally and temporarily. No data is permanently stored on servers.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Can I export results?</h4>
+                    <p class="text-gray-600 text-sm">
+                        Yes, both tools support exporting results in various formats (CSV, PDF reports).
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">What if I encounter an error?</h4>
+                    <p class="text-gray-600 text-sm">
+                        Check the error message in the output panel. For persistent issues, contact technical support with the error details.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Can I run multiple operations simultaneously?</h4>
+                    <p class="text-gray-600 text-sm">
+                        Currently, only one operation can run at a time per tool. This ensures data integrity and optimal performance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="fade-in" style="animation-delay: 0.4s;">
+        <div class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-2xl shadow-lg p-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">Need More Help?</h2>
+                <p class="text-blue-100 mb-6">
+                    Check out our comprehensive documentation or reach out to our support team
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button class="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-file-text mr-2"></i>
+                        View Documentation
+                    </button>
+                    <button class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-medium">
+                        <i class="fas fa-external-link-alt mr-2"></i>
+                        Submit Ticket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Add click handlers for email buttons
+document.querySelectorAll('button').forEach(button => {
+    if (button.textContent.includes('@mobileye.com')) {
+        button.addEventListener('click', function() {
+            const email = this.textContent.trim();
+            // Copy email to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                utils.showNotification('Email address copied to clipboard', 'success');
+            }).catch(() => {
+                utils.showNotification('Failed to copy email address', 'error');
+            });
+        });
+    }
+});
+
+// Add click handlers for resource buttons
+document.querySelectorAll('button').forEach(button => {
+    if (button.textContent.includes('Documentation') || button.textContent.includes('Submit Ticket')) {
+        button.addEventListener('click', function() {
+            utils.showNotification('This feature is coming soon!', 'info');
+        });
+    }
+});
+</script>
+{% endblock %} 
