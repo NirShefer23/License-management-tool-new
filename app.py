@@ -37,6 +37,11 @@ TOOLS_CONFIG = {
         'script_path': r"C:\Users\nirshe\OneDrive - Mobileye\Mobileye Nir\cursor\polarion-license-manager-new\reqif_comparator.py",
         'venv_path': r"C:\Users\nirshe\OneDrive - Mobileye\Mobileye Nir\cursor\polarion-license-manager-new\venv\Scripts\python.exe",
         'name': 'ReqIF Comparison Tool'
+    },
+    'user_activity_analyzer': {
+        'script_path': r"C:\Users\nirshe\OneDrive - Mobileye\Mobileye Nir\cursor\polarion-license-manager-new\user_activity_analyzer_basic.py",
+        'venv_path': r"C:\Users\nirshe\OneDrive - Mobileye\Mobileye Nir\cursor\polarion-license-manager-new\venv\Scripts\python.exe",
+        'name': 'User Activity Analyzer'
     }
 }
 
@@ -195,6 +200,58 @@ class ToolExecutor:
                 'output': '',
                 'error': str(e)
             }
+    
+    @staticmethod
+    def execute_user_activity_analyzer(log_file_path, output_format="table", limit=None, sort_by="activity_score", 
+                                     filter_user=None, date_range=None, top_percentile=0.1):
+        """Execute the User Activity Analyzer tool"""
+        try:
+            # Build command
+            cmd = [
+                TOOLS_CONFIG['user_activity_analyzer']['venv_path'],
+                TOOLS_CONFIG['user_activity_analyzer']['script_path'],
+                '--log-file', log_file_path,
+                '--output-format', output_format,
+                '--sort-by', sort_by,
+                '--top-percentile', str(top_percentile)
+            ]
+            
+            # Add optional parameters
+            if limit:
+                cmd.extend(['--limit', str(limit)])
+            if filter_user:
+                cmd.extend(['--filter-user', filter_user])
+            if date_range and len(date_range) == 2:
+                cmd.extend(['--date-range', date_range[0], date_range[1]])
+            
+            # Execute the tool
+            process = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                cwd=os.path.dirname(TOOLS_CONFIG['user_activity_analyzer']['script_path'])
+            )
+            
+            if process.returncode == 0:
+                return {
+                    'success': True,
+                    'output': process.stdout,
+                    'error': process.stderr if process.stderr else None
+                }
+            else:
+                return {
+                    'success': False,
+                    'output': process.stdout,
+                    'error': process.stderr
+                }
+                
+        except Exception as e:
+            logger.error(f"Error executing User Activity Analyzer tool: {e}")
+            return {
+                'success': False,
+                'output': '',
+                'error': str(e)
+            }
 
 def save_execution_record(tool_name, status, input_params, output_result, duration):
     """Save execution record to history"""
@@ -224,6 +281,11 @@ def license_management():
 def reqif_comparison():
     """ReqIF comparison tool page"""
     return render_template('reqif_comparison.html')
+
+@app.route('/user-activity-analyzer')
+def user_activity_analyzer():
+    """User Activity Analyzer tool page"""
+    return render_template('user_activity_analyzer.html')
 
 @app.route('/help')
 def help_page():
@@ -355,6 +417,72 @@ def api_execute_reqif_comparison():
             'error': str(e)
         }), 500
 
+@app.route('/api/execute-user-activity-analyzer', methods=['POST'])
+def api_execute_user_activity_analyzer():
+    """API endpoint for executing User Activity Analyzer tool"""
+    try:
+        data = request.get_json()
+        log_file_path = data.get('log_file_path', '')
+        output_format = data.get('output_format', 'table')
+        limit = data.get('limit')
+        sort_by = data.get('sort_by', 'activity_score')
+        filter_user = data.get('filter_user')
+        date_range = data.get('date_range')
+        top_percentile = data.get('top_percentile', 0.1)
+        
+        if not log_file_path:
+            return jsonify({
+                'success': False,
+                'error': 'Log file path is required'
+            }), 400
+        
+        start_time = datetime.now()
+        
+        # Execute the tool
+        result = ToolExecutor.execute_user_activity_analyzer(
+            log_file_path=log_file_path,
+            output_format=output_format,
+            limit=limit,
+            sort_by=sort_by,
+            filter_user=filter_user,
+            date_range=date_range,
+            top_percentile=top_percentile
+        )
+        
+        duration = (datetime.now() - start_time).total_seconds()
+        
+        # Save execution record
+        execution_record = save_execution_record(
+            tool_name=TOOLS_CONFIG['user_activity_analyzer']['name'],
+            status='completed' if result['success'] else 'failed',
+            input_params={
+                'log_file_path': log_file_path,
+                'output_format': output_format,
+                'limit': limit,
+                'sort_by': sort_by,
+                'filter_user': filter_user,
+                'date_range': date_range,
+                'top_percentile': top_percentile
+            },
+            output_result=result['output'],
+            duration=duration
+        )
+        
+        return jsonify({
+            'success': result['success'],
+            'output': result['output'],
+            'error': result['error'],
+            'execution_id': execution_record['id'],
+            'duration': duration
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in User Activity Analyzer API: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/execution-history')
 def api_execution_history():
     """API endpoint for getting execution history"""
@@ -391,7 +519,7 @@ def api_tool_stats():
 
 if __name__ == '__main__':
     print("=" * 60)
-    print("Mobileye Development Tools Web Interface")
+    print("Mobileye Business IS Development Tools")
     print("=" * 60)
     print(f"Starting server on http://localhost:5000")
     print(f"Available tools: {len(TOOLS_CONFIG)}")
@@ -400,3 +528,5 @@ if __name__ == '__main__':
     print("=" * 60)
     
     app.run(debug=True, host='0.0.0.0', port=5000) 
+    #zzz
+    

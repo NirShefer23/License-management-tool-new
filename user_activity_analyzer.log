@@ -1,0 +1,9 @@
+2025-08-06 01:57:55,996 - INFO - Successfully parsed 8957 log entries from license logs/log4j-licensing-20250805-0022-03.log.2025-08-05-1
+2025-08-06 01:57:56,005 - INFO - Reconstructed 4480 sessions for 325 users
+2025-08-06 01:59:19,207 - INFO - Successfully parsed 8957 log entries from license logs/log4j-licensing-20250805-0022-03.log.2025-08-05-1
+2025-08-06 01:59:19,220 - INFO - Reconstructed 4480 sessions for 325 users
+2025-08-06 02:01:15,786 - INFO - Successfully parsed 8957 log entries from license logs/log4j-licensing-20250805-0022-03.log.2025-08-05-1
+2025-08-06 02:01:15,802 - INFO - Reconstructed 4480 sessions for 325 users
+2025-08-06 02:03:12,375 - INFO - Successfully parsed 8957 log entries from license logs/log4j-licensing-20250805-0022-03.log.2025-08-05-1
+2025-08-06 02:03:12,386 - INFO - Reconstructed 4480 sessions for 325 users
+2025-08-06 08:02:07,140 - ERROR - Analysis failed: 'charmap' codec can't encode character '\U0001f50d' in position 0: character maps to <undefined>

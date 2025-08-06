@@ -129,6 +129,7 @@ class PolarionLicenseManager:
                 
                 logger.info("Database schema validation successful")
                 return True
+                #zzz
                 
         except psycopg2.OperationalError as e:
             logger.error(f"Database connection failed: {e}")

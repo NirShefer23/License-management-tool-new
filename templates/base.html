@@ -150,6 +150,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/user-activity-analyzer" class="sidebar-item {% if request.endpoint == 'user_activity_analyzer' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
+                            <i class="fas fa-chart-bar w-5 h-5"></i>
+                            <span class="font-medium">User Activity Analyzer</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/help" class="sidebar-item {% if request.endpoint == 'help_page' %}active{% endif %} flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-white">
                             <i class="fas fa-question-circle w-5 h-5"></i>
                             <span class="font-medium">Help & Support</span>
